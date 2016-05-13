@@ -1,31 +1,31 @@
 ---
-- name: Install packages necessary to run Drupal
+- name: Install yum packages
   yum:
     name: "{{ item }}"
     state: latest
   with_items:
   - php
   - mod_php
+  - mod_python
+  - mod_wsgi
   - php-mysql
-  - php-ldap
-  - php-pear
-  - php-gd
-  - php-drush-drush
+  - python-imaging
+  - python-pip
   - mariadb
-- name: Set SELinux to allow apache to connect to ldap servers
-  command: setsebool -P httpd_can_connect_ldap on
+
+- name: Install pip packages
+- pip:
+    name: "{{ item.name }}"
+    version: "{{ item.version }}"
+  with_items:
+  - name: Django
+    version:1.3.1
+  - name: django-storages
+    version:
+  - name: awscli
+    version:
+
 - name: Add config include to http.conf
   lineinfile:
     dest: /etc/httpd/conf/httpd.conf
     line: "IncludeOptional \"/srv/*/etc/*.conf\""
-- name: Ensure /etc/profile.d/d7-ops.sh exists
-  file:
-    path: /etc/profile.d/d7-ops.sh
-    state: touch
-    mode: 0644
-    owner: root
-    group: root
-- name: Add ops scripts to path
-  lineinfile: "dest=/etc/profile.d/d7-ops.sh line='export PATH=/opt/d7/bin:$PATH'"
-- name: Add ops scripts to sudo secure_path
-  lineinfile: "dest=/etc/sudoers state=present regexp='^Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin$' line='Defaults    secure_path = /opt/d7/bin:/sbin:/bin:/usr/sbin:/usr/bin' validate='visudo -cf %s'"
