@@ -21,9 +21,9 @@
   - name: Django
     version: 1.3.1
   - name: django-storages
-    version:
+    version: 1.4.1
   - name: awscli
-    version:
+    version: 1.10.28
 
 - name: Add config include to http.conf
   lineinfile:
