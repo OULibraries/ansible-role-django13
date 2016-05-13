@@ -4,11 +4,13 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - gcc
+    - libjpeg-turbo-devel
     - php
     - mod_php
     - mod_wsgi
     - php-mysql
-    - python-pillow
+    - python-devel
     - python-pip
     - mariadb
 - name: Update pip
@@ -28,6 +30,8 @@
     version: 1.4.1
   - name: awscli
     version: 1.10.28
+  - name: pillowcase
+    version: 2.0.0
 
 - name: Add config include to http.conf
   lineinfile:
