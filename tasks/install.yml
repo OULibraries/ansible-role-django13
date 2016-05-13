@@ -14,7 +14,7 @@
   - mariadb
 
 - name: Install pip packages
-- pip:
+  pip:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
   with_dict:
