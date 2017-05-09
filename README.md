@@ -16,7 +16,7 @@ Requires OU Libraries centos7, mariadb, and apache2 roles. To install:
 License
 -------
 
-TBD
+[MIT](https://github.com/OULibraries/ansible-role-django13/blob/master/LICENSE)
 
 Author Information
 ------------------
